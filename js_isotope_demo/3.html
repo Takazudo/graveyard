@@ -1,0 +1,105 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+<head>
+<meta charset="utf-8">
+<title>Isotope - insert</title>
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="mystyle.css">
+<script src="jquery.min.js"></script> 
+<script src="jquery.isotope.min.js"></script> 
+<script>
+var $container;
+$(function(){
+
+	/* utils */
+
+	$.fn.getItemExClass = function(){
+		var classArray = this.attr('class').split(' ');
+		var res = $.grep(classArray, function(current, i){
+			return /^item-/.test(current);
+		});
+		if(res.length !== 1){
+			return false;
+		}
+		return res[0].replace(/^item-/,'');
+	};
+	$.fn.itemHasExClass = function(exClass){
+		return (this.getItemExClass(exClass) !== exClass) ? true : false;
+	};
+
+	/* do it */
+
+	$container = $('#container');
+	$container.isotope({
+        itemSelector: '.item',
+		masonry: {
+			columnWidth: 180
+		},
+		getSortData: {
+			number: function($elem){
+				return parseInt( $elem.find('.item-num').text(), 10 );
+			},
+			itemExClass: function($elem){
+				return $elem.getItemExClass();
+			},
+			hoge: function($elem){
+				return $elem.itemHasExClass('hoge') ? 1 : -1;
+			},
+			foo: function($elem){
+				return $elem.itemHasExClass('foo') ? 1 : -1;
+			},
+			bar: function($elem){
+				return $elem.itemHasExClass('bar') ? 1 : -1;
+			}
+		}
+	});
+
+	var counter = 11;
+
+	$('#isotope-insert').click(function(){
+		var $items = $();
+		for(var i=0,l=5; i<l; i++){
+			var $item = $('<div class="item item-hoge"><div class="item-inner"><span class="item-num"></span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>');
+			$('.item-num', $item).text(counter);
+			$items = $items.add($item);
+			counter++;
+		}
+		$container.isotope('insert', $items);
+	});
+
+});
+</script>
+</head>
+<body>
+
+<div class="notes">
+	<h1><a href="http://isotope.metafizzy.co/">Isotope</a> - insert</h1>
+</div>
+<div class="playground">
+	
+	<div class="buttons">
+		<button id="isotope-insert">insert</button>
+		<button onclick="$container.isotope({ sortBy: 'number', sortAscending: true })">$container.isotope({ sortBy: 'number', sortAscending: true })</button>
+		<button onclick="$container.isotope({ sortBy: 'number', sortAscending: false })">$container.isotope({ sortBy: 'number', sortAscending: false })</button>
+		<button onclick="$container.isotope({ sortBy: 'hoge', sortAscending: true })">$container.isotope({ sortBy: 'hoge', sortAscending: true })</button>
+		<button onclick="$container.isotope({ sortBy: 'foo', sortAscending: true })">$container.isotope({ sortBy: 'foo', sortAscending: true })</button>
+		<button onclick="$container.isotope({ sortBy: 'bar', sortAscending: true })">$container.isotope({ sortBy: 'bar', sortAscending: true })</button>
+	</div>
+
+	<div id="container" class="itemholder clearfix">
+		<div class="item item-hoge"><div class="item-inner"><span class="item-num">1</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+		<div class="item item-foo"><div class="item-inner"><span class="item-num">2</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox</span></div></div>
+		<div class="item item-bar"><div class="item-inner"><span class="item-num">3</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+		<div class="item item-hoge"><div class="item-inner"><span class="item-num">4</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox</span></div></div>
+		<div class="item item-foo"><div class="item-inner"><span class="item-num">5</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+		<div class="item item-bar"><div class="item-inner"><span class="item-num">6</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox</span></div></div>
+		<div class="item item-hoge"><div class="item-inner"><span class="item-num">7</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+		<div class="item item-foo"><div class="item-inner"><span class="item-num">8</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. brown quick</span></div></div>
+		<div class="item item-bar"><div class="item-inner"><span class="item-num">9</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+		<div class="item item-hoge"><div class="item-inner"><span class="item-num">10</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+	</div>
+
+<!-- /.playground --></div>
+
+</body>
+</html>

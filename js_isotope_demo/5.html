@@ -1,0 +1,104 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+<head>
+<meta charset="utf-8">
+<title>Isotope - reLayout</title>
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="mystyle.css">
+<style>
+#wrapper{
+	width:360px;
+}
+</style>
+<script src="jquery.min.js"></script> 
+<script src="jquery.isotope.min.js"></script> 
+<script>
+$(function(){
+	var $container = $('#container');
+	$container.isotope({
+        itemSelector: '.item',
+		masonry: {
+			columnWidth: 180
+		}
+	});
+	(function(){
+
+		var i = 1;
+		var $wrapper = $('#wrapper');
+		widthSet = [ 360, 540, 720, 900, 1080 ];
+		window.change = function(){
+			$wrapper.width(widthSet[i]);
+			$container.isotope('reLayout');
+			i++;
+			if(i>4){ i=0; }
+		};
+
+	})();
+});
+</script>
+</head>
+<body>
+
+<div class="notes">
+	<h1><a href="http://isotope.metafizzy.co/">Isotope</a> - reLayout</h1>
+</div>
+<div class="playground">
+
+	<div id="wrapper">
+		
+		<div class="buttons">
+			<button onclick="change()">change width then exec reLayout</button>
+		</div>
+
+		<div id="container" class="itemholder clearfix">
+			<div class="item"><div class="item-inner"><span class="item-num">1</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">2</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox</span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">3</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">4</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox</span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">5</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">6</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox</span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">7</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">8</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. brown quick</span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">9</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">10</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">11</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox</span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">12</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">13</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">14</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox</span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">15</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">16</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">17</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick</span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">18</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">19</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">20</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">21</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">22</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">23</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">24</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">25</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">26</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">27</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">28</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">29</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">30</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">31</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">32</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">33</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">34</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">35</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">36</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">37</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">38</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">39</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">40</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">41</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">42</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+			<div class="item"><div class="item-inner"><span class="item-num">43</span><span class="item-text">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </span></div></div>
+		</div>
+
+	</div>
+
+<!-- /.playground --></div>
+
+</body>
+</html>

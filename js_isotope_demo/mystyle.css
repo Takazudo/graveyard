@@ -1,0 +1,70 @@
+/* The Magnificent Clearfix: nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+
+body{
+	font-family:sans-serif;
+	background:#222;
+}
+a{
+	color:#ddd;;
+}
+
+button{
+	border-radius:10px;
+	font-size:1em;
+	padding:.5em 1em;
+	margin:0 0 10px 10px;
+	background:#999;
+}
+.buttons{
+	display:table;
+	padding:0 0 10px;
+	margin:0 0 0 -10px;
+}
+
+.notes{
+	background:#eee;
+	padding:10px;
+	font-size:12px;
+}
+.notes, .notes *{
+	color:#555;
+}
+
+.playground{
+	padding:20px;
+}
+	.itemholder{
+	  background:#000;
+	  margin-bottom: 20px;
+	}
+		.item{
+			width:170px;
+			padding:0 0 10px;
+			float: left;
+			position: relative;
+		}
+			.item-inner{
+				background:#555;
+			}
+				.item-num{
+					float:left;
+					color:#333;
+					background:#ddd;
+					font-size:2em;
+					padding:.5em .5em;
+					margin:0 4px 3px 0;
+				}
+				.item-text{
+					line-height:1.2;
+				}
+
+		/* item variations */
+
+		.item-hoge .item-inner{ background: #755; }
+		.item-foo  .item-inner{ background: #575; }
+		.item-bar  .item-inner{ background: #557; }
+
+
