@@ -1,0 +1,22 @@
+application: zudotest
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+
+- url: /common
+  static_dir: common
+
+- url: /
+  script: main.py
+
+- url: /hoge
+  script: main.py
+
+- url: /foo
+  script: main.py
+
+- url: /bar
+  script: main.py
+

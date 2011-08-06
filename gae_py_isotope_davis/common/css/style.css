@@ -1,0 +1,93 @@
+/* The Magnificent Clearfix: nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+
+body{
+	font-family:sans-serif;
+	background:#222;
+	color:#eee;
+}
+a:link,
+a:visited,
+a:hover,
+a:active,
+a:focus{
+	color:#ddd;
+}
+.mod-all{
+	font-size:1.2em;
+}
+
+button{
+	border-radius:10px;
+	font-size:1em;
+	padding:.5em 1em;
+	margin:0 0 10px 10px;
+	background:#999;
+}
+.buttons{
+	display:table;
+	padding:0 0 10px;
+	margin:0 0 0 -10px;
+}
+
+.ui-header{
+	padding:10px 20px;
+	font-size:12px;
+	border:1px solid #eee;
+	margin:10px;
+}
+
+.playground{
+	padding:20px;
+}
+	.pagenav{
+		color:#eee;
+		margin:0 0 1em;
+		padding-left:20px;
+	}
+		.pagenav li{
+			padding-bottom:.25em;
+		}
+	.itemholder{
+	  background:#000;
+	  margin-bottom: 20px;
+	  overflow:hidden;
+	  *zoom:1; /* ie */
+	}
+		.item{
+			width:170px;
+			padding:0 0 10px;
+			float: left;
+			position: relative;
+			color:#333;
+		}
+		.item-w2{
+			width:350px;
+		}
+			.item-inner{
+				background:#555;
+				border-radius:10px;
+				overflow:hidden;
+			}
+				.item-num{
+					float:left;
+					color:#333;
+					background:#ddd;
+					font-size:2em;
+					padding:.5em .5em;
+					margin:0 4px 3px 0;
+					border-radius:0 0 10px 0;
+				}
+				.item-text{
+					line-height:1.2;
+				}
+
+		/* item variations */
+
+		.item-hoge .item-inner{ background: #755; }
+		.item-foo  .item-inner{ background: #575; }
+		.item-bar  .item-inner{ background: #557; }
+
+
