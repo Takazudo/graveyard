@@ -1,0 +1,17 @@
+body{
+	padding:20px;
+	font-family:sans-serif;
+	font-size:2em;
+}
+h1{
+	color:#fff;
+	background:#333;
+	padding:.1em .5em;
+}
+#content{
+	display:none;
+}
+.no-js #content,
+.no-history #content{
+	display:block;
+}
