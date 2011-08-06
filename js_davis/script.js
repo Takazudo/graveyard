@@ -41,22 +41,35 @@ $(function(){
 	/* setup Davis */
 
 	var davis = Davis(function(){
+		var fistPageLoaded = false;
+		function handleFirstPage(){
+			if(!fistPageLoaded){
+				fistPageLoaded = true;
+				$content.show();
+				return true;
+			}
+			return false;
+		}
 		this.get('/', function(){
+			if(handleFirstPage()){ return; }
 			fetchPage('/').then(function(html){
 				$content.updateContent(html);
 			});
 		})
 		this.get('/hoge.html', function(){
+			if(handleFirstPage()){ return; }
 			fetchPage('/hoge.html').then(function(html){
 				$content.updateContent(html);
 			});
 		})
 		this.get('/foo.html', function(){
+			if(handleFirstPage()){ return; }
 			fetchPage('/foo.html').then(function(html){
 				$content.updateContent(html);
 			});
 		})
 		this.get('/bar.html', function(){
+			if(handleFirstPage()){ return; }
 			fetchPage('/bar.html').then(function(html){
 				$content.updateContent(html);
 			});
