@@ -1,0 +1,13 @@
+body {
+	background:orange;
+}
+p {
+	border:3px solid red;
+	width:80%;
+	margin:0 auto;
+	height:200px;
+}
+#foo {
+	margin:20px 0 0;
+	border:{{foowidth}}px solid blue;
+}

@@ -1,0 +1,83 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+	background:#333;
+	color:#fff;
+}
+html, body {
+	height:100%;
+	width:100%;
+	margin:0;
+	padding:0;
+}
+.all {
+	width:100%;
+	height:100%;
+	display:table;
+}
+.all-inner {
+	display:table-cell;
+	text-align:center;
+	vertical-align:middle;
+}
+iframe {
+	border:1px solid red;
+	width:80%;
+	height:500px;
+	margin:0 auto;
+	background:#fff;
+	display:block;
+	-webkit-transition:all .5s;
+	transition:all .5s;
+}
+.buttons {
+	text-align:center;
+	padding:20px 0 0;
+}
+.borderwidth {
+	display:none;
+}
+.borderwidth input {
+	width:40px;
+}
+.frameresizer {
+	text-align:center;
+	padding:0 0 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="all"><div class="all-inner">
+
+	<div class="frameresizer">
+		<button id="morenarrow">more narrow</button>
+		<button id="morewide">more wide</button>
+	</div>
+
+	<div id="previewframewrap"></div>
+
+	<div class="buttons">
+		<button id="button1">style:'style1', html:'html1'</button>
+		<button id="button2">style:'style2', html:'html2'</button>
+	</div>
+	<div class="borderwidth">
+		#foo border width: <input type="number" value="3" id="foowidth">
+	</div>
+
+</div></div>
+
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+<script src="../libs/handlebars.js"></script>
+<script src="../libs/jquery.tmpldeck.min.js"></script>
+<script src="../libs/jquery.ba-bbq.min.js"></script>
+<script src="js/base.js"></script>
+<script src="js/outer.js"></script>
+</body>
+</html>

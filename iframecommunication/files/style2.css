@@ -1,0 +1,13 @@
+body {
+	background:pink;
+}
+p {
+	border:3px solid red;
+	width:50%;
+	margin:0 auto;
+	height:300px;
+}
+#foo {
+	margin:20px 0 0;
+	border:{{foowidth}}px solid blue;
+}
