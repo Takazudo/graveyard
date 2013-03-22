@@ -1,0 +1,12 @@
+body {
+	text-align:center;
+}
+
+#hitarea {
+	margin:0 auto 10px;
+	line-height:200px;
+	width:200px;
+	background:blue;
+	color:#fff;
+	-ms-touch-action:none; /* needs to prevent back button trigger */
+}
