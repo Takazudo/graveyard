@@ -17,7 +17,7 @@ var getRelatedEventNameSet = function(startEvent) {
     return {
       move: 'MSPointerMove',
       end: 'MSPointerUp'
-    }
+    };
   }
 };
 
@@ -38,9 +38,14 @@ var $document = $(document);
 var $hitarea = $('#hitarea');
 var $result = $('#result');
 
-var startX, currentEventNameSet, swipeFired = false;
+var startX,
+    currentEventNameSet,
+    swipeFired = false,
+    handleStart,
+    handleMove,
+    handleEnd;
 
-var handleStart = function(event) {
+handleStart = function(event) {
   event.preventDefault(); // 以降のイベントを止める touch→clickと発火
   currentEventNameSet = getRelatedEventNameSet(event.type);
   startX = normalizeX(event);
@@ -49,7 +54,7 @@ var handleStart = function(event) {
   $result.text('touch started');
 };
 
-var handleMove = function(event) {
+handleMove = function(event) {
   if(swipeFired) {
     return;
   }
@@ -69,7 +74,7 @@ var handleMove = function(event) {
   }
 };
 
-var handleEnd = function(event) {
+handleEnd = function(event) {
   $document.off(currentEventNameSet.move, handleMove);
   $document.off(currentEventNameSet.end, handleEnd);
   currentEventNameSet = null;
