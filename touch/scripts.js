@@ -19,6 +19,12 @@ var getRelatedEventNameSet = function(startEvent) {
       end: 'MSPointerUp'
     };
   }
+  if(startEvent === 'pointerdown') {
+    return {
+      move: 'pointermove',
+      end: 'pointerup'
+    };
+  }
 };
 
 // タッチの座標取得
@@ -84,5 +90,5 @@ handleEnd = function(event) {
   $result.text('result here');
 };
 
-$hitarea.on('touchstart mousedown MSPointerDown', handleStart);
+$hitarea.on('touchstart mousedown MSPointerDown pointerdown', handleStart);
 
