@@ -15,7 +15,10 @@
 <script src="js/jquery.ui.easing.min.js"></script>
 <script>
 (function() {
-	var scroller = new $.EaseScroller({ easing: 'easeInOutExpo' });
+	var scroller = new $.EaseScroller({
+		easing: 'easeInOutExpo',
+		changehash: false
+	});
 	scroller.live('a[href^=#]:not([href$=#]):not(.apply-noscroll)');
 }());
 </script>
