@@ -13,18 +13,18 @@ var getRelatedEventNameSet = function(startEvent) {
       end: 'mouseup'
     };
   }
-  if(startEvent === 'MSPointerDown') {
-    return {
-      move: 'MSPointerMove',
-      end: 'MSPointerUp'
-    };
-  }
-  if(startEvent === 'pointerdown') {
-    return {
-      move: 'pointermove',
-      end: 'pointerup'
-    };
-  }
+  //if(startEvent === 'MSPointerDown') {
+  //  return {
+  //    move: 'MSPointerMove',
+  //    end: 'MSPointerUp'
+  //  };
+  //}
+  //if(startEvent === 'pointerdown') {
+  //  return {
+  //    move: 'pointermove',
+  //    end: 'pointerup'
+  //  };
+  //}
 };
 
 // タッチの座標取得
@@ -53,6 +53,7 @@ var startX,
 
 handleStart = function(event) {
   event.preventDefault(); // 以降のイベントを止める touch→clickと発火
+  console.log(event.type);
   currentEventNameSet = getRelatedEventNameSet(event.type);
   startX = normalizeX(event);
   $document.on(currentEventNameSet.move, handleMove);
@@ -61,6 +62,7 @@ handleStart = function(event) {
 };
 
 handleMove = function(event) {
+  console.log('move');
   if(swipeFired) {
     return;
   }
@@ -81,6 +83,7 @@ handleMove = function(event) {
 };
 
 handleEnd = function(event) {
+  console.log('end');
   $document.off(currentEventNameSet.move, handleMove);
   $document.off(currentEventNameSet.end, handleEnd);
   currentEventNameSet = null;
@@ -90,5 +93,6 @@ handleEnd = function(event) {
   $result.text('result here');
 };
 
-$hitarea.on('touchstart mousedown MSPointerDown pointerdown', handleStart);
+$hitarea.on('touchstart mousedown', handleStart);
+//$hitarea.on('touchstart mousedown MSPointerDown pointerdown', handleStart);
 
