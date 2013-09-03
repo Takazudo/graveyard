@@ -46,6 +46,7 @@
 
   app.V.Item = Backbone.View.extend({
     tagName: 'li',
+    className: 'list-group-item',
     events: {
       'click a': '_clickHandler'
     },
@@ -75,7 +76,7 @@
     render: function(itemModel) {
       var self = this;
       self._removePreviousItems();
-      self.$el.empty().html('<ul></ul>');
+      self.$el.empty().html('<ul class="list-group"></ul>');
       var $ul = self.$('ul');
       itemModel.itemCollection.each(function(model) {
         var itemView = new app.V.Item({
