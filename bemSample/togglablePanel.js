@@ -5,15 +5,18 @@
   var cls_button_open = 'togglablePanel__button_state_open';
   var cls_body_open = 'togglablePanel__body_state_open';
 
-  var TogglablePanel = function(el) {
+  var TogglablePanel = function($el) {
     this.opened = false;
-    this.$el = $(el);
-    this.$button = $(selector_button, el);
-    this.$body = $(selector_body, el);
+    this.$el = $el;
+    this.$button = $(selector_button, $el);
+    this.$body = $(selector_body, $el);
     this._eventify();
   };
 
   TogglablePanel.prototype = {
+
+    // public
+    
     open: function() {
       if(this.opened) {
         return;
@@ -39,14 +42,50 @@
         this.open();
       }
     },
+
+    // event things
+
+    on: function(eventName, callback) {
+      this.$el.on(eventName, callback);
+    },
+    off: function(eventName, callback) {
+      this.$el.off(eventName, callback);
+    },
+
     _eventify: function() {
       var self =  this;
       self.$el.on('click', selector_button, function() {
         self.toggle();
       });
     }
+
   };
 
-  window.TogglablePanel = TogglablePanel; // attach to global
+  // to jQuery plugin
+
+  $.fn.togglablePanel = function() {
+    return this.each(function(i, el) {
+      var $panel = $(el);
+      var instance = new TogglablePanel($panel);
+      $panel.data('togglablePanel', instance);
+    });
+  };
+
+  // setup method
+
+  TogglablePanel.setup = function(rootEl) {
+    $(rootEl).find('.togglablePanel').togglablePanel();
+  };
+
+  // do setup
+
+  $(function() {
+    TogglablePanel.setup('body');
+  });
+
+  // attach to global
+
+  window.TogglablePanel = TogglablePanel;
+
 
 }());

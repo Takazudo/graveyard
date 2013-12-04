@@ -22,8 +22,16 @@
 
 <script>
 $(function() {
-  var $el = $('#panel1');
-  var panel = new TogglablePanel($el[0]);
+
+  var panel = $('#panel1').data('togglablePanel');
+
+  panel.on('panel.open', function() {
+    alert('panel.open event fired.');
+  });
+  panel.on('panel.close', function() {
+    alert('panel.close event fired.');
+  });
+
   $('#open').on('click', function() {
     panel.open();
   });
@@ -33,12 +41,7 @@ $(function() {
   $('#toggle').on('click', function() {
     panel.toggle();
   });
-  $el.on('panel.open', function() {
-    alert('panel.open event fired.');
-  });
-  $el.on('panel.close', function() {
-    alert('panel.close event fired.');
-  });
+
 });
 </script>
 
