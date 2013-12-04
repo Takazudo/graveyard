@@ -1,9 +1,15 @@
 (function() {
 
+  // config things
+
+  var selector_block = '.togglablePanel';
   var selector_button = '.togglablePanel__button';
   var selector_body = '.togglablePanel__body';
   var cls_button_open = 'togglablePanel__button_state_open';
   var cls_body_open = 'togglablePanel__body_state_open';
+  var widget_data_key = 'togglablePanel';
+
+  // Widget
 
   var TogglablePanel = function($el) {
     this.opened = false;
@@ -67,14 +73,14 @@
     return this.each(function(i, el) {
       var $panel = $(el);
       var instance = new TogglablePanel($panel);
-      $panel.data('togglablePanel', instance);
+      $panel.data(widget_data_key, instance);
     });
   };
 
   // setup method
 
   TogglablePanel.setup = function(rootEl) {
-    $(rootEl).find('.togglablePanel').togglablePanel();
+    $(selector_block, rootEl).togglablePanel();
   };
 
   // do setup
@@ -86,6 +92,5 @@
   // attach to global
 
   window.TogglablePanel = TogglablePanel;
-
 
 }());
