@@ -1,0 +1,54 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+.wrapper {
+  width:300px;
+  margin:0 auto;
+  padding:20px 0;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<link rel="stylesheet" href="togglablePanel.css">
+<script src="togglablePanel.js"></script>
+
+<script>
+$(function() {
+  var $els = $('.togglablePanel');
+  $els.each(function(i, el) {
+    new TogglablePanel(el);
+  });
+});
+</script>
+
+</head>
+<body><div class="wrapper">
+
+<div class="togglablePanel">
+  <div class="togglablePanel__button">Toogle!!</div>
+  <div class="togglablePanel__body">
+    The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. 
+  </div>
+</div>
+
+<div class="togglablePanel">
+  <div class="togglablePanel__button">Toogle!!</div>
+  <div class="togglablePanel__body">
+    The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. 
+  </div>
+</div>
+
+<div class="togglablePanel">
+  <div class="togglablePanel__button">Toogle!!</div>
+  <div class="togglablePanel__body">
+    The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. 
+  </div>
+</div>
+
+</div></body>
+</html>
