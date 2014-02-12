@@ -1,0 +1,31 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<script src="../libs/jquery.min.js"></script>
+<script src="../libs/jquery.ba-throttle-debounce.min.js"></script>
+<script src="script.js"></script>
+</head>
+<body>
+
+<h1>submit後の処理をdebounce</h1>
+
+<h2>通常</h2>
+<form action="#" method="POST" id="form_normal">
+  <div class="result">Please submit</div>
+  <div>名前: <input type="text"></div>
+  <div><input type="submit" value="submit"></div>
+</form>
+
+<h2>500msでdebounce</h2>
+<form action="#" method="POST" id="form_debounce">
+  <div class="result">Please submit</div>
+  <div>名前: <input type="text"></div>
+  <div><input type="submit" value="submit"></div>
+</form>
+
+</body>
+</html>

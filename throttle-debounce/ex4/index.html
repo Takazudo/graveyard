@@ -1,0 +1,35 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<script src="../libs/jquery.min.js"></script>
+<script src="../libs/jquery.ba-throttle-debounce.min.js"></script>
+<script src="script.js"></script>
+</head>
+<body>
+
+<h1>字数のカウントをthrottle／debounceするデモ</h1>
+
+<h2>通常</h2>
+<form action="#" method="POST" id="form_normal">
+  <textarea></textarea>
+  <div>文字数: <span class="currentCharCount">0</span> / 50</div>
+</form>
+
+<h2>250msでthrottle</h2>
+<form action="#" method="POST" id="form_throttle">
+  <textarea></textarea>
+  <div>文字数: <span class="currentCharCount">0</span> / 50</div>
+</form>
+
+<h2>250msでdebounce</h2>
+<form action="#" method="POST" id="form_debounce">
+  <textarea></textarea>
+  <div>文字数: <span class="currentCharCount">0</span> / 50</div>
+</form>
+
+</body>
+</html>

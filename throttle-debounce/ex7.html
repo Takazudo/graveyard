@@ -1,0 +1,243 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="libs/jquery.min.js"></script>
+<script src="libs/jquery.ba-throttle-debounce.min.js"></script>
+<script src="libs/easestepper.min.js"></script>
+<script src="libs/jquery.easescroller.min.js"></script>
+<script src="libs/jquery.easing.js"></script>
+<style>
+* {
+  margin:0;
+  padding:0;
+}
+h1 {
+  padding:1em 0 .5em;
+}
+p {
+  padding:0 0 1em;
+}
+#menu {
+  height:40px;
+  border-bottom:1px solid #000;
+  position:fixed;
+  left:0;
+  top:0;
+  width:100%;
+  list-style-type:none;
+  background:#fff;
+}
+  #menu li {
+    line-height:40px;
+    border-right:1px solid #000;
+    float:left;
+  }
+  #menu li.current {
+    background:#FFBD8B;
+  }
+  #menu a {
+    float:left;
+    padding:0 10px;
+  }
+#contents {
+  width:600px;
+  padding:0 20px 20px 40px;
+}
+section {
+  padding:50px 0 60px;
+  border-top:1px solid #000;
+}
+#switcher {
+  position:fixed;
+  right:0;
+  top:0;
+  padding:10px;
+}
+  #switcher input {
+    vertical-align:top;
+    width:7em;
+    height:2em;
+    border-radius:4px;
+    border:2px solid #333;
+  }
+  #switcher input.current {
+    border:2px solid red;
+  }
+#count {
+  padding:0 10px 0 0;
+}
+#box {
+  background:orange;
+  position:absolute;
+  left:0;
+  top:0;
+}
+</style>
+<script>
+
+(new $.EaseScroller({
+  easing: 'easeInOutExpo',
+  changehash: false
+})).live();
+
+$(function() {
+
+  var $window = $(window);
+  var $count = $('#count');
+
+  var currentMenuId;
+  var $menuItems = $('#menu li');
+
+  var $sectionA = $('#sectionA');
+  var $sectionB = $('#sectionB');
+  var $sectionC = $('#sectionC');
+  var $sectionD = $('#sectionD');
+
+  var $sections = $()
+    .add($sectionA)
+    .add($sectionB)
+    .add($sectionC)
+    .add($sectionD);
+
+  var isElAboveTop = function($el) {
+    var st = $window.scrollTop();
+    var top = $el.offset().top;
+    if(st >= top) {
+      return true;
+    }
+    return false;
+  };
+
+  var switchMenu = function(menuId) {
+    $menuItems.removeClass('current');
+    $('#' + menuId).addClass('current');
+    $count.html($count.html()*1 + 1);
+  };
+
+  var detectMenuId = function() {
+    if(isElAboveTop($sectionD)) { return 'menuD'; }
+    if(isElAboveTop($sectionC)) { return 'menuC'; }
+    if(isElAboveTop($sectionB)) { return 'menuB'; }
+    return 'menuA';
+  };
+
+  var update = function() {
+    var menuId = detectMenuId();
+    if(currentMenuId === menuId) {
+      return;
+    }
+    switchMenu(menuId);
+  };
+
+  var currentFn = update;
+  var update_throttled = $.throttle(200, update);
+  var update_debounced = $.debounce(200, update);
+  var eventNames = 'resize scroll';
+
+  $window.on(eventNames, update);
+  update();
+
+  var $switcher_direct = $('#switcher-direct');
+  var $switcher_throttle = $('#switcher-throttle');
+  var $switcher_debounce = $('#switcher-debounce');
+  var $switchers = $()
+    .add($switcher_direct)
+    .add($switcher_throttle)
+    .add($switcher_debounce);
+
+  var switchSwitcherTo = function($switcher) {
+    $switchers.removeClass('current');
+    $switcher.addClass('current');
+  };
+
+  var swapEventHandlerTo = function(fn) {
+    if(currentFn === fn) {
+      return;
+    }
+    $switchers.removeClass('current');
+    $window
+      .off(eventNames, currentFn)
+      .on(eventNames, fn);
+    currentFn = fn;
+  };
+
+  $switcher_direct.on('click', function() {
+    swapEventHandlerTo(update);
+    switchSwitcherTo($switcher_direct);
+  });
+  $switcher_throttle.on('click', function() {
+    swapEventHandlerTo(update_throttled);
+    switchSwitcherTo($switcher_throttle);
+  });
+  $switcher_debounce.on('click', function() {
+    swapEventHandlerTo(update_debounced);
+    switchSwitcherTo($switcher_debounce);
+  });
+
+});
+</script>
+</head>
+<body id="top">
+<div id="contents">
+
+  <ul id="menu">
+    <li id="menuA"><a href="#sectionA">section A</a></li>
+    <li id="menuB"><a href="#sectionB">section B</a></li>
+    <li id="menuC"><a href="#sectionC">section C</a></li>
+    <li id="menuD"><a href="#sectionD">section D</a></li>
+  </ul>
+
+  <section id="sectionA">
+    <h1>section A</h1>
+    <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </p>
+    <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </p>
+    <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </p>
+    <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </p>
+    <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </p>
+    <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </p>
+  </section>
+
+  <section id="sectionB">
+    <h1>section B</h1>
+    <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </p>
+    <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </p>
+    <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </p>
+    <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </p>
+    <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </p>
+    <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </p>
+  </section>
+
+  <section id="sectionC">
+    <h1>section C</h1>
+    <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </p>
+    <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </p>
+    <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </p>
+    <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </p>
+    <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </p>
+    <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </p>
+  </section>
+
+  <section id="sectionD">
+    <h1>section D</h1>
+    <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </p>
+    <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </p>
+    <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </p>
+    <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </p>
+    <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </p>
+    <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. </p>
+  </section>
+
+</div>
+
+<div id="switcher">
+  <span id="count">0</span>
+  <span><input id="switcher-direct" type="button" value="direct"></span>
+  <span><input id="switcher-throttle" type="button" value="throttle"></span>
+  <span><input id="switcher-debounce" type="button" value="debounce"></span>
+</div>
+
+</body>
+</html>

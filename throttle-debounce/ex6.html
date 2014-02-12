@@ -1,0 +1,127 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="libs/jquery.min.js"></script>
+<script src="libs/jquery.ba-throttle-debounce.min.js"></script>
+<style>
+h2 {
+  clear:both;
+  margin:0;
+  padding:.0 0 .5em;
+}
+form {
+  width:300px;
+  float:left;
+  border:1px solid #000;
+  position:relative;
+  padding:10px;
+  margin:0 0 1em;
+}
+textarea {
+  width:290px;
+  height:3em;
+}
+textarea.error {
+  color:#fff;
+  background:red;
+}
+</style>
+<script>
+
+$(function() {
+
+  var $form = $('#form_normal');
+  var $textarea = $('textarea', $form);
+  var $count = $('.currentCharCount', $form);
+
+  var countChars = function() {
+    var count = $textarea.val().length;
+    $count.text(count);
+    if(count > 50) {
+      $textarea.addClass('error');
+    } else {
+      $textarea.removeClass('error');
+    }
+  };
+
+  var onKeyup = function() {
+    countChars();
+  };
+
+  $textarea.on('keyup', onKeyup);
+
+});
+
+$(function() {
+
+  var $form = $('#form_throttle');
+  var $textarea = $('textarea', $form);
+  var $count = $('.currentCharCount', $form);
+
+  var countChars = function() {
+    var count = $textarea.val().length;
+    $count.text(count);
+    if(count > 50) {
+      $textarea.addClass('error');
+    } else {
+      $textarea.removeClass('error');
+    }
+  };
+
+  var onKeyup = $.throttle(500, countChars);
+
+  $textarea.on('keyup', onKeyup);
+
+});
+
+$(function() {
+
+  var $form = $('#form_debounce');
+  var $textarea = $('textarea', $form);
+  var $count = $('.currentCharCount', $form);
+
+  var countChars = function() {
+    var count = $textarea.val().length;
+    $count.text(count);
+    if(count > 50) {
+      $textarea.addClass('error');
+    } else {
+      $textarea.removeClass('error');
+    }
+  };
+
+  var onKeyup = $.debounce(500, countChars);
+
+  $textarea.on('keyup', onKeyup);
+
+});
+
+</script>
+</head>
+<body>
+
+<h1>keyupをthrottle／debounceするデモ</h1>
+
+<h2>通常</h2>
+<form action="#" method="POST" id="form_normal">
+  <textarea></textarea>
+  <div>文字数: <span class="currentCharCount">0</span> / 50</div>
+</form>
+
+<h2>500msでthrottle</h2>
+<form action="#" method="POST" id="form_throttle">
+  <textarea></textarea>
+  <div>文字数: <span class="currentCharCount">0</span> / 50</div>
+</form>
+
+<h2>500msでdebounce</h2>
+<form action="#" method="POST" id="form_debounce">
+  <textarea></textarea>
+  <div>文字数: <span class="currentCharCount">0</span> / 50</div>
+</form>
+
+</body>
+</html>

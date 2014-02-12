@@ -1,0 +1,61 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="libs/jquery.min.js"></script>
+<script src="libs/jquery.ba-throttle-debounce.min.js"></script>
+<style>
+html {
+  background:red;
+}
+* {
+  margin:0;
+  padding:0;
+}
+#switcher {
+  position:fixed;
+  right:0;
+  top:0;
+  padding:10px;
+}
+#count {
+  position:fixed;
+  left:10px;
+  top:10px;
+  padding:10px;
+}
+#box {
+  background:orange;
+  position:absolute;
+  left:10px;
+  top:10px;
+}
+</style>
+<script>
+$(function() {
+
+  var $window = $(window);
+  var $count = $('#count');
+  var $box = $('#box');
+
+  var resizeBox = function() {
+    var w = $window.width() - 20;
+    var h = $window.height() - 20;
+    $box.width(w);
+    $box.height(h);
+    $count.html($count.html()*1+1);
+  };
+
+  $window.on('resize', resizeBox);
+  resizeBox();
+
+});
+</script>
+</head>
+<body>
+<div id="box"></div>
+<div id="count">0</div>
+</body>
+</html>

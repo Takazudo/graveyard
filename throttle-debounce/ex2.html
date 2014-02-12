@@ -1,0 +1,90 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="libs/jquery.min.js"></script>
+<script src="libs/jquery.ba-throttle-debounce.min.js"></script>
+<style>
+html {
+  background:red;
+}
+* {
+  margin:0;
+  padding:0;
+}
+#switcher {
+  position:fixed;
+  right:10px;
+  top:10px;
+  padding:10px;
+}
+#count {
+  position:fixed;
+  left:10px;
+  top:10px;
+  padding:10px;
+}
+#box {
+  background:orange;
+  position:absolute;
+  left:10px;
+  top:10px;
+}
+</style>
+<script>
+$(function() {
+
+  var $window = $(window);
+  var $count = $('#count');
+  var $box = $('#box');
+
+  var resizeBox = function() {
+    var w = $window.width() - 20;
+    var h = $window.height() - 20;
+    $box.width(w);
+    $box.height(h);
+    $count.html($count.html()*1+1);
+  };
+
+  var currentResizeFn = resizeBox;
+  var resizeBox_throttled = $.throttle(500, resizeBox);
+  var resizeBox_debounced = $.debounce(500, resizeBox);
+
+  $window.on('resize', resizeBox);
+  resizeBox();
+
+  var swapTo = function(fn) {
+    if(currentResizeFn === fn) {
+      return;
+    }
+    $window
+      .off('resize', currentResizeFn)
+      .on('resize', fn);
+    currentResizeFn = fn;
+  };
+
+  $('#switcher-direct').on('click', function() {
+    swapTo(resizeBox);
+  });
+  $('#switcher-throttle').on('click', function() {
+    swapTo(resizeBox_throttled);
+  });
+  $('#switcher-debounce').on('click', function() {
+    swapTo(resizeBox_debounced);
+  });
+
+});
+</script>
+</head>
+<body>
+<div id="box"></div>
+<div id="count">0</div>
+<div id="switcher">
+  <input id="switcher-direct" type="button" value="direct">
+  <input id="switcher-throttle" type="button" value="throttle">
+  <input id="switcher-debounce" type="button" value="debounce">
+</div>
+</body>
+</html>

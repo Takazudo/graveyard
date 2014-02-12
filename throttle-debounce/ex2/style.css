@@ -1,0 +1,36 @@
+html {
+  background:red;
+}
+* {
+  margin:0;
+  padding:0;
+}
+#switcher {
+  position:fixed;
+  right:10px;
+  top:10px;
+  padding:10px;
+}
+  #switcher input {
+    vertical-align:top;
+    width:7em;
+    height:2em;
+    border-radius:4px;
+    border:2px solid #333;
+  }
+  #switcher input.current {
+    border:2px solid red;
+  }
+#count {
+  position:fixed;
+  left:10px;
+  top:10px;
+  padding:10px;
+  font-size:3em;
+}
+#box {
+  background:orange;
+  position:absolute;
+  left:10px;
+  top:10px;
+}
