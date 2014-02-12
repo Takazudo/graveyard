@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>jQuery.ui.domwindow</title>
+<link rel="stylesheet" href="domwindow.css">
+<style>
+body{
+	text-align:center;
+	font-family:sans-serif;
+	line-height:1.5;
+}
+#all{
+	text-align:left;
+	width:800px;
+	margin:0 auto;
+	padding:20px 0 50px;
+}
+.ui-domwindowdialog{
+	background:#fff;
+}
+pre{
+	border:1px solid #000;
+	padding:10px;
+	font-size:15px;
+	font-family:monospace;
+}
+</style>
+<script src="jquery.js"></script>
+<script src="jquery.ui.widget.js"></script>
+<script src="jquery.ui.domwindow.js"></script>
+<script>
+$(function(){
+	$.ui.domwindowdialog.setup({
+		width: 600, // dialog width
+		height: 300, // dialog height
+		spinnersrc: null, // specify this for preload
+		selector_open: '.apply-domwindow-open', // opener selector
+		selector_close: '.apply-domwindow-close' // closer selector
+	});
+});
+</script>
+</head>
+<body>
+
+<p><a class="apply-domwindow-open" href="dialog1.html" data-domwindow-iframedialog="true">open</a></p>
+
+</body>
+</html>
