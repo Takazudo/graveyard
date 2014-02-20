@@ -1,0 +1,19 @@
+* {
+  margin:0;
+  padding:0;
+}
+ul {
+  border-top:1px solid #000;
+}
+li {
+  border-bottom:1px solid #000;
+}
+li a {
+  display:block;
+  padding:8px 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  box-sizing:border-box;
+}
