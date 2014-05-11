@@ -1,0 +1,164 @@
+html, body {
+	padding:0;
+	margin:0;
+	background:#F4F4F4;
+}
+img {
+	border:0;
+}
+body {
+	min-width:670px;
+	font-family:Helvetica, Arial, sans-serif;
+}
+
+.frame-header {
+	color:#fff;
+	background:#61B9E4;
+	padding:0 0 0 18px;
+	height:50px;
+	font-weight:bold;
+	letter-spacing:.1em;
+	z-index:3;
+	position:relative;
+}
+	.frame-header-logo {
+		float:left;
+		margin:13px 10px 0 0
+	}
+	.frame-header-title {
+		font-size:28px;
+		float:left;
+		line-height:50px;
+	}
+	.frame-header-description {
+		font-size:14px;
+		float:left;
+		line-height:45px;
+		padding:5px 0 0 8px;
+	}
+
+.frame-nav {
+	height:52px;
+	font-size:14px;
+	font-weight:bold;
+	line-height:20px;
+	letter-spacing:.05em;
+	background:#31374A;
+	color:#fff;
+	white-space:nowrap;
+	font-family:Helvetica, Arial, sans-serif;
+	z-index:3;
+	position:relative;
+}
+	.frame-nav a {
+		text-decoration:none;
+	}
+	.frame-nav-uiSelector {
+		width:188px;
+		float:left;
+		border-right:1px solid #060A11;
+	}
+		.frame-nav-uiSelector a {
+			display:block;
+			padding:16px 0 16px 18px;
+			color:#fff;
+		}
+		.frame-nav-uiSelector-current {
+			position:relative;
+		}
+			.frame-nav-uiSelector-current img {
+				position:absolute;
+				right:17px;
+				top:50%;
+				margin:-4px 0 0;
+			}
+		.frame-nav-uiSelector ul {
+			list-style-type:none;
+			padding:0;
+			margin:0;
+			background:#31374A;
+			display:none;
+			*zoom:1; /* ie */
+		}
+			.frame-nav-uiSelector li {
+				padding:0;
+				margin:0;
+				border-top:1px solid #060A11;
+			}
+				.frame-nav-uiSelector li a:hover {
+					background:#12172B;
+				}
+	.frame-nav-uiSelector:hover ul {
+		display:block;
+	}
+	.frame-nav-pageSelector {
+		list-style-type:none;
+		margin:0;
+		padding:0;
+	}
+		.frame-nav-pageSelector li {
+			list-style-type:none;
+			margin:0;
+			padding:0;
+			float:left;
+		}
+		.frame-nav-pageSelector li * {
+			float:left;
+			color:#fff;
+		}
+		.frame-nav-pageSelector li a:hover {
+			background:#12172B;
+		}
+		.frame-nav-pageSelector li > * {
+			padding:0 40px;
+		}
+		.frame-nav-pageSelector li > * > span{
+			padding:16px 0 16px;
+		}
+		.frame-nav-pageSelector li > span > span{
+			padding-bottom:10px;
+			border-bottom:6px solid #61B9E4;
+		}
+
+.frame-uiLabel {
+	position:fixed;
+	left:50%;
+	bottom:0;
+	text-align:center;
+	color:#fff;
+	font-weight:bold;
+	line-height:1;
+	z-index:1;
+}
+	.frame-uiLabel-inner {
+		width:200px;
+		margin:0 0 0 -100px;
+	}
+		.frame-uiLabel-text1 {
+			font-size:20px;
+			letter-spacing:.1em;
+		}
+		.frame-uiLabel-text2 {
+			font-size:100px;
+		}
+		
+.frame-uiBoard {
+	position:fixed;
+	left:0;
+	top:102px;
+	right:0;
+	bottom:0;
+	z-index:2;
+}
+	.frame-uiBoard-inner {
+		display:table;
+		width:100%;
+		height:100%;
+	}
+	.frame-uiBoard-inner2 {
+		display:table-cell;
+		vertical-align:middle;
+		text-align:center;
+		padding:0 0 80px;
+		*padding:40px 0; /* IE7 */
+	}

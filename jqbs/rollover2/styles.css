@@ -1,0 +1,14 @@
+.rolloverExample {
+  width:380px;
+  height:93px;
+  padding:0;
+  margin:0 auto;
+  list-style-type:none;
+}
+.rolloverExample * {
+  float:left;
+}
+.rolloverExample li {
+  padding:0 0 0 20px;
+  margin:0;
+}
