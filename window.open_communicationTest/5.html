@@ -1,0 +1,42 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+<head>
+<meta charset="shift_jis">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+</head>
+<body>
+
+<a class="open-table" href="#huge_table">open</a>
+<div>
+<table id="huge_table">
+    <tr>
+        <td>表</td>
+        <td>表</td>
+        <td>表</td>
+    </tr>
+</table>
+
+</div>
+<script>
+$('.open-table').click(function(e){
+    e.preventDefault();
+    var tableHash = $(this).attr('href');
+    var $table = $(tableHash);
+    if ($table.length === 0) {
+      return;
+    }
+    var childW = window.open();
+    var childDoc = childW.document;
+    var childBody = childDoc.body;
+    var src = '<html><head><link rel="stylesheet" href="https://dl.dropboxusercontent.com/u/268240/test/otherWin/styles.css"></head><body>';
+    src += $table.parent().html();
+    src += '</body></html>';
+    console.log(src);
+    $(childBody).append(src);
+});
+</script>
+</body>
+</html>
