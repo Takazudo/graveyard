@@ -1,0 +1,76 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+.link[aria-disabled="true"] {
+  pointer-events: none;
+  color: #999;
+}
+input[aria-required="true"] {
+  border: 2px solid red;
+}
+</style>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script>
+$(function() {
+  var $counter = $('.counter').eq(0);
+  var timer;
+  $('.startTimer').on('click', function() {
+    if(timer) {
+      clearInterval(timer);
+    }
+    timer = setInterval(function() {
+      var count = $counter.text();
+      $counter.text(+count + 1);
+    }, 2000);
+  });
+  $('.stopTimer').on('click', function() {
+    if(timer) {
+      clearInterval(timer);
+    }
+  });
+});
+</script>
+</head>
+<body>
+
+<h2>aria-haspopup</h2>
+
+<a href="http://example.com" aria-haspopup="true" target="_blank">example.comへ</a>
+<a href="http://example.com" aria-haspopup="false">example.comへ</a>
+
+<!--
+<h2>aria-disabled</h2>
+
+<a href="http://example.com" class="link" aria-disabled="true" target="_blank">example.comへ</a>
+
+<div>
+  <input type="button" value="OFFに" class="toOff">
+  <input type="button" value="ONに" class="toOn">
+</div>
+-->
+
+<h2>aria-required</h2>
+
+<input type="text" aria-required="false"><br>
+<input type="text" aria-required="true">
+
+<h2>aria-live</h2>
+
+<!--
+<span class="counter" aria-live="off">20</span>
+<span class="counter" aria-live="polite">20</span>
+-->
+<span class="counter" aria-live="assertive">20</span>
+
+
+<div>
+  <input type="button" value="カウント上昇" class="startTimer">
+  <input type="button" value="カウント停止" class="stopTimer">
+</div>
+
+</body>
+</html>
