@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "colorguard": "^1.2.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-postcss": "^6.2.0",
+    "postcss-colorguard-formatter": "^1.0.2",
+    "postcss-reporter": "^3.0.0"
+  }
+}
