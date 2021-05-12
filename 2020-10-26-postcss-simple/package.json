@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "postcss": "^8.1.4"
+    "postcss": "^8.2.10"
   }
 }
