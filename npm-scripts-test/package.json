@@ -1,0 +1,8 @@
+{
+  "name": "minify-example",
+  "scripts": {
+    "minify": "npm run minify-css && npm run notify-done",
+    "minify-css": "cleancss --output styles.min.css styles.css",
+    "notify-done": "echo done!"
+  }
+}
